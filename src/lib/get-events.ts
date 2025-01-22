@@ -1,11 +1,12 @@
 import { Event, Program, utils } from "@coral-xyz/anchor";
 import { JUPITER_V6_PROGRAM_ID } from "../constants";
 import { TransactionWithMeta } from "../types";
+import { Jupiter } from "../idl/jupiter";
 
 export function getEvents(
-  program: Program,
+  program: Program<Jupiter>,  // Explicitly type the program
   transactionResponse: TransactionWithMeta
-) {
+): Event[] {  // Explicitly type the return value
   let events: Event[] = [];
 
   if (transactionResponse && transactionResponse.meta) {
